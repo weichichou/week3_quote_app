@@ -1,0 +1,9 @@
+.isLiked {
+    color: green;
+    font-weight: bold;
+}
+
+.isDisliked {
+    color: red;
+    text-decoration: line-through;
+}
