@@ -27,10 +27,10 @@ export default class AddQuote extends Component {
                 <h3>Add Your Own Quote</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label>Your Quote:
-                        <input onChange={this.handleChange} type='text' name='text' value={this.state.text}></input>
+                        <input onChange={this.handleChange} type='text' name='text' value={this.state.text} required></input>
                     </label>
                     <label>Your Name:
-                        <input onChange={this.handleChange} type='text' name='author' value={this.state.author}></input>
+                        <input onChange={this.handleChange} type='text' name='author' value={this.state.author} required></input>
                     </label>
                     <input type='submit'></input>
                 </form>
