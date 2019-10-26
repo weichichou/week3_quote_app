@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Quote from './Quote';
 import AddQuote from './AddQuote';
+import Count from './Count'
 
 export default class QuoteSearcher extends Component {
     state = {
@@ -11,14 +12,16 @@ export default class QuoteSearcher extends Component {
     fetch = () => {
         fetch(`https://quote-garden.herokuapp.com/quotes/search/${this.state.search}`)
            .then(res => res.json())
-           .then(data => this.setState({quotes: data.results}))
+           .then((data) => {   
+              this.setState({quotes: data.results})
+           })
            .catch(console.error);
     }
 
     componentDidMount(){
        this.fetch();
     }
-    
+
     addQuote = (id, text, author) => {
         const newQuote = {
             _id: id,
@@ -68,11 +71,15 @@ export default class QuoteSearcher extends Component {
 
         return(
             <div>
+                
+                
                 <form onSubmit={this.handleSubmit}>
                     <input onChange={this.handleChange} type='text' value={this.state.search}/>
                     <input type='submit' value='Search!' />
                 </form>
-
+                
+                { this.state.quotes &&  <Count quotes={this.state.quotes}/>}
+               
                 <AddQuote addQuote={this.addQuote}/>
 
                 <h3>Liked: {numLikes} / Disliked: {numDislikes}</h3>
