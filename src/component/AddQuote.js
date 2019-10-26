@@ -18,6 +18,7 @@ export default class AddQuote extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.addQuote(this.state.id, this.state.text, this.state.author);
+        this.setState({text:'', author: ''})
     }
     
     render(){
