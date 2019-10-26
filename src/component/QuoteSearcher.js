@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Quote from './Quote';
+import AddQuote from './AddQuote';
 
 export default class QuoteSearcher extends Component {
     state = {
@@ -17,6 +18,19 @@ export default class QuoteSearcher extends Component {
     componentDidMount(){
        this.fetch();
     }
+    
+    addQuote = (id, text, author) => {
+        const newQuote = {
+            _id: id,
+            quoteText: text,
+            quoteAuthor: author
+        }
+        this.state.quotes.unshift(newQuote);
+        this.setState({
+            quotes: this.state.quotes
+        })
+    }
+
 
     updateLikeness = (id, likeness) => {
         this.setState({
@@ -29,6 +43,7 @@ export default class QuoteSearcher extends Component {
             })
         })
     }
+
     handleChange = (event) => {
        this.setState({
            search: event.target.value
@@ -58,7 +73,10 @@ export default class QuoteSearcher extends Component {
                     <input type='submit' value='Search!' />
                 </form>
 
+                <AddQuote addQuote={this.addQuote}/>
+
                 <h3>Liked: {numLikes} / Disliked: {numDislikes}</h3>
+
                 { !this.state.quotes && 'Loading...' }
                 { (this.state.quotes && this.state.quotes.length === 0) && 'Results not found!'}
                 { this.state.quotes && 
