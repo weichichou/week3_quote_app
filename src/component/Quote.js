@@ -3,15 +3,19 @@ import './Quote.css'
 
 export default class Quote extends Component {
     state = {
-        like: null
+        like: null,
+        id: this.props.id,
+
     }
 
     like = () => {
-        this.setState({like: true})
+        this.setState({like: true});
+        this.props.updateLikeness(this.state.id, true);
     }
 
     dislike = () => {
-        this.setState({like: false})
+        this.setState({like: false});
+        this.props.updateLikeness(this.state.id, false);
     }
 
     render(){
