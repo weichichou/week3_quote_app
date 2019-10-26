@@ -36,7 +36,7 @@ export default class QuoteSearcher extends Component {
                 { this.state.quotes === [] && 'Loading...' }
                 { this.state.quotes !== [] && 
                     <p>{this.state.quotes.map((quote)=>{
-                        return  <Quote updateLikeness={this.updateLikeness} key={quote._id} id={quote._id} quoteText={quote.quoteText} quoteAuthor={quote.quoteAuthor}/>
+                        return  <Quote updateLikeness={this.updateLikeness} key={quote._id} id={quote._id} quoteText={quote.quoteText} quoteAuthor={quote.quoteAuthor} likeness={quote.likeness}/>
                     })}</p>
                 }
             </div>
