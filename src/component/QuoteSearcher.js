@@ -13,10 +13,23 @@ export default class QuoteSearcher extends Component {
         fetch(`https://quote-garden.herokuapp.com/quotes/search/${this.state.search}`)
            .then(res => res.json())
            .then((data) => {   
-              this.setState({quotes: data.results})
+              this.setState({quotes: this.removeDuplicate(data.results)})
            })
            .catch(console.error);
     }
+    
+    removeDuplicate = (array) => {
+        let seen = {};
+        const newArray = [];
+        for (const element of array){
+            if(!seen.hasOwnProperty(element.quoteText)){
+                newArray.push(element);
+                seen[element.quoteText] = true;
+            }
+        }
+        return newArray; 
+    }
+   
 
     componentDidMount(){
        this.fetch();
